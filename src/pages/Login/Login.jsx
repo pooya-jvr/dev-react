@@ -26,7 +26,7 @@ function Login() {
                 setLoading(true)
                 const data = await loginApi(username, password)
                 localStorage.setItem('token', data.access)
-                navigate('/')
+                navigate('/products/')
 
             } catch (err) {
                 setErrors({ general: err.message || 'خطای ناشناخته' })

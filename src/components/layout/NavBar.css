@@ -1,0 +1,85 @@
+.navbar {
+  padding: 15px 40px;
+  background: linear-gradient(135deg, #1b263b, #415a77);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar .logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.btn-login {
+  padding: 8px 20px;
+  border-radius: 8px;
+  border: 2px solid white;
+  background: transparent;
+  color: white;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+  background: white;
+  color: #1b263b;
+}
+
+.profile-menu {
+  position: relative;
+  cursor: pointer;
+}
+
+.profile-menu span {
+  font-weight: bold;
+}
+
+.profile-menu .dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 35px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  padding: 10px;
+  min-width: 150px;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.profile-menu:hover .dropdown {
+  display: flex;
+}
+
+.profile-menu .dropdown a,
+.profile-menu .dropdown button {
+  text-decoration: none;
+  color: white;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 5px 0;
+}
+
+.profile-menu .dropdown button:hover,
+.profile-menu .dropdown a:hover {
+  color: #ffd166;
+}

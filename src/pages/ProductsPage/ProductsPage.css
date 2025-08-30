@@ -1,0 +1,93 @@
+.products-page {
+  min-height: 100vh;
+  padding: 60px 40px;
+  background: linear-gradient(135deg, #1b263b, #415a77);
+  color: white;
+  text-align: center;
+}
+
+.products-page h1 {
+  font-size: 3rem;
+  margin-bottom: 40px;
+  text-shadow: 0 3px 12px rgba(0,0,0,0.5);
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* دقیقا ۴ ستون */
+  gap: 25px;
+  justify-items: center; /* کارت‌ها وسط ستون‌ها */
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column; /* محتوا عمودی */
+  align-items: center;
+  width: 100%;
+  max-width: 250px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.45);
+}
+.product-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+.product-card h3 {
+  font-size: 1.4rem;
+  margin: 10px 0;
+}
+
+.product-card p {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  margin-bottom: 10px;
+}
+
+
+.product-card .price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #ffd166;
+}
+
+.product-card button {
+  padding: 10px 25px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.product-card button:hover {
+  transform: translateY(-3px);
+  opacity: 0.95;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* ۴ کارت در هر ردیف */
+  gap: 25px;
+  justify-items: center;
+}
+
+@media (max-width: 600px) {
+  .products-grid {
+    grid-template-columns: 1fr; /* یک ستون روی موبایل */
+  }
+}
