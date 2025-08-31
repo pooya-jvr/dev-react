@@ -1,61 +1,61 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
+import { UserProfileApi } from "../../api/profile";
+import { FaUserCircle, FaSignOutAlt } from "react-icons/fa";
 
 const NavBar = () => {
     const [user, setUser] = useState(null);
+    const [open, setOpen] = useState(false);
     const token = localStorage.getItem("token");
+    const menuRef = useRef(null);
 
     useEffect(() => {
-        // API Call برای گرفتن اطلاعات کاربر
-        const fetchUser = async () => {
-            try {
-                if (!token) return;
+        if (token) UserProfileApi().then((data) => setUser(data));
+    }, [token]);
 
-                const res = await fetch("/api/user/profile/", {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
-
-                if (res.ok) {
-                    const data = await res.json();
-                    setUser(data);
-                }
-            } catch (err) {
-                console.log("خطا در دریافت اطلاعات کاربر:", err);
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (menuRef.current && !menuRef.current.contains(event.target)) {
+                setOpen(false);
             }
         };
-
-        fetchUser();
+        document.addEventListener("click", handleClickOutside);
+        return () => document.removeEventListener("click", handleClickOutside);
     }, []);
 
     return (
         <nav className="navbar">
-            <div className="navbar-left">
-                <Link to="/" className="logo">فروشگاه من</Link>
-            </div>
 
-            <div className="navbar-right">
+            <div className="navbar-right" ref={menuRef}>
                 {token && user ? (
-                    <div className="profile-menu">
-                        <span>سلام، {user.name}</span>
-                        <div className="dropdown">
-                            <Link to="/profile">پروفایل من</Link>
-                            <Link to="/orders">سفارشات</Link>
-                            <button
-                                onClick={() => {
-                                    localStorage.removeItem("token");
-                                    setUser(null);
-                                }}
-                            >
-                                خروج
-                            </button>
-                        </div>
+                    <div className="profile-menu" onClick={() => setOpen(!open)}>
+                        <span>
+                            <FaUserCircle size={22} />
+                            {user.username} ⬇
+                        </span>
+                        {open && (
+                            <div className="dropdown">
+                                <Link to="/profile"><FaUserCircle /> پروفایل من</Link>
+                                <Link to="/orders">📦 سفارشات</Link>
+                                <button
+                                    onClick={() => {
+                                        localStorage.removeItem("token");
+                                        setUser(null);
+                                        setOpen(false);
+                                    }}
+                                >
+                                    <FaSignOutAlt /> خروج
+                                </button>
+                            </div>
+                        )}
                     </div>
                 ) : (
                     <Link to="/login" className="btn-login">ورود</Link>
                 )}
+            </div>
+            <div className="navbar-left">
+                <Link to="/" className="logo">فروشگاه من</Link>
             </div>
         </nav>
     );

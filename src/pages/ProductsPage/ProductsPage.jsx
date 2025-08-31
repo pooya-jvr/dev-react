@@ -10,6 +10,12 @@ const ProductsPage = () => {
         { id: 4, name: "محصول ۴", description: "توضیحات محصول ۴", price: "400,000 تومان", image: "https://via.placeholder.com/200" },
         { id: 5, name: "محصول ۵", description: "توضیحات محصول ۵", price: "180,000 تومان", image: "https://via.placeholder.com/200" },
         { id: 6, name: "محصول ۶", description: "توضیحات محصول ۶", price: "220,000 تومان", image: "https://via.placeholder.com/200" },
+        { id: 1, name: "محصول ۱", description: "توضیحات محصول ۱", price: "200,000 تومان", image: "https://via.placeholder.com/200" },
+        { id: 2, name: "محصول ۲", description: "توضیحات محصول ۲", price: "350,000 تومان", image: "https://via.placeholder.com/200" },
+        { id: 3, name: "محصول ۳", description: "توضیحات محصول ۳", price: "150,000 تومان", image: "https://via.placeholder.com/200" },
+        { id: 4, name: "محصول ۴", description: "توضیحات محصول ۴", price: "400,000 تومان", image: "https://via.placeholder.com/200" },
+        { id: 5, name: "محصول ۵", description: "توضیحات محصول ۵", price: "180,000 تومان", image: "https://via.placeholder.com/200" },
+        { id: 6, name: "محصول ۶", description: "توضیحات محصول ۶", price: "220,000 تومان", image: "https://via.placeholder.com/200" },
     ];
 
     return (

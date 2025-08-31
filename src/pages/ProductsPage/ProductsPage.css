@@ -81,8 +81,8 @@
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* ۴ کارت در هر ردیف */
-  gap: 25px;
+  grid-template-columns: repeat(6, 2fr); /* ۴ کارت در هر ردیف */
+  gap: 50px;
   justify-items: center;
 }
 
