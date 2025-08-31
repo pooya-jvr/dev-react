@@ -1,8 +1,11 @@
 import React, { useRef } from "react";
 import "./HomePage.css";
+import { useNavigate } from 'react-router-dom'
+
 
 const HomePage = () => {
     const infoRef = useRef(null);
+    const navigate = useNavigate()
 
     const scrollToInfo = () => {
         if (infoRef.current) {
@@ -21,7 +24,7 @@ const HomePage = () => {
                 <h1>خوش آمدید</h1>
                 <p>بهترین تجربه خرید آنلاین با طراحی لوکس و مدرن با افکت‌های جذاب</p>
                 <div className="button-group">
-                    <button className="btn-buy" onClick={() => alert("رفتن به خرید")}>
+                    <button className="btn-buy" onClick={() => navigate('/products/')}>
                         خرید
                     </button>
                     <button className="btn-info" onClick={scrollToInfo}>
