@@ -26,3 +26,28 @@ export const loginApi = async (username, password) => {
     }
     return data
 }
+
+
+
+export const registerApi = async (formData) => {
+    const csrfRes = await axios.get(`${BASE_URL}/users/get-csrf/`, {
+        withCredentials: true,
+    });
+
+    const csrfToken = csrfRes.data.csrfToken;
+
+    console.log(csrfToken)
+
+    const res = await axios.post(
+        `${BASE_URL}/users/register/`,
+        formData,
+        {
+            headers: {
+                "X-CSRFToken": csrfToken,
+            },
+            withCredentials: true,
+        }
+    );
+
+    return res.data;
+};

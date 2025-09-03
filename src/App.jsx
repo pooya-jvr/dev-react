@@ -3,6 +3,7 @@ import Layout from "./components/layout/layout";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/Login/Login";
 import ProductsPage from "./pages/ProductsPage/ProductsPage";
+import Register from "./pages/Register/Register";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         {/* صفحات بدون NavBar */}
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<Register />} />
 
         {/* صفحات با NavBar */}
         <Route

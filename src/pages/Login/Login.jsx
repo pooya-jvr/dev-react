@@ -74,6 +74,14 @@ function Login() {
                     <button type="submit" disabled={loading}>
                         {loading ? 'در حال دخول...' : 'برو داخل'}
                     </button>
+
+                    <button
+                        type="button"
+                        onClick={() => navigate('/register')}
+                        disabled={loading}
+                    >
+                        {loading ? 'در حال ثبوت...' : 'حساب کاربری ندارید؟'}
+                    </button>
                 </form>
             </div>
         </div>
