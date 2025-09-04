@@ -15,6 +15,7 @@ function Register() {
 
     const [errors, setErrors] = useState({})
     const [loading, setLoading] = useState(false)
+    const [success, setSuccess] = useState(false)
 
     const navigate = useNavigate()
 
@@ -37,11 +38,15 @@ function Register() {
 
         setErrors(newErrors)
 
+
         if (Object.keys(newErrors).length === 0) {
             try {
                 setLoading(true)
-                await registerApi(formData)   // این متد باید توی api/auth تعریف بشه
-                navigate('/login')            // بعد از رجیستر بفرسته صفحه لاگین
+                await registerApi(formData)
+                setSuccess(true) // نمایش پاپ‌آپ موفقیت
+                setTimeout(() => {
+                    navigate('/login') // بعد از ۲ ثانیه به لاگین هدایت می‌شود
+                }, 2000)
             } catch (err) {
                 setErrors({ general: err.message || 'خطای ناشناخته' })
             } finally {
@@ -52,6 +57,11 @@ function Register() {
 
     return (
         <div className='login'>
+            {success && (
+                <div className="popup-success">
+                    ثبت نام با موفقیت انجام شد!
+                </div>
+            )}
             <div className="login-container">
                 <h2>ثبت‌نام کاربر</h2>
                 <form onSubmit={handleSubmit} noValidate>
@@ -141,6 +151,7 @@ function Register() {
                     >
                         {loading ? 'در حال انتقال...' : 'حساب کاربری دارید؟'}
                     </button>
+
                 </form>
             </div>
         </div>

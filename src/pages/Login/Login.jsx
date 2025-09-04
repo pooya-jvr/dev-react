@@ -8,6 +8,7 @@ function Login() {
     const [password, setPassword] = useState('')
     const [errors, setErrors] = useState({})
     const [loading, setLoading] = useState(false)
+    const [rloading, setrLoading] = useState(false)
     const navigate = useNavigate()
 
 
@@ -78,9 +79,9 @@ function Login() {
                     <button
                         type="button"
                         onClick={() => navigate('/register')}
-                        disabled={loading}
+                        disabled={rloading}
                     >
-                        {loading ? 'در حال ثبوت...' : 'حساب کاربری ندارید؟'}
+                        {rloading ? 'در حال ثبوت...' : 'حساب کاربری ندارید؟'}
                     </button>
                 </form>
             </div>
