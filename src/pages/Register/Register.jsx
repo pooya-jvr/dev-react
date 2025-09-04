@@ -39,19 +39,17 @@ function Register() {
         setErrors(newErrors)
 
 
-        if (Object.keys(newErrors).length === 0) {
-            try {
-                setLoading(true)
-                await registerApi(formData)
-                setSuccess(true) // نمایش پاپ‌آپ موفقیت
-                setTimeout(() => {
-                    navigate('/login') // بعد از ۲ ثانیه به لاگین هدایت می‌شود
-                }, 2000)
-            } catch (err) {
-                setErrors({ general: err.message || 'خطای ناشناخته' })
-            } finally {
-                setLoading(false)
+        try {
+            setLoading(true)
+            const data = await registerApi(formData);
+            if (data.status === 201) {
+                setSuccess(true)
+                setTimeout(() => navigate('/login'), 2000);
             }
+        } catch (err) {
+            setErrors({ general: err.message });
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -147,7 +145,6 @@ function Register() {
                     <button
                         type="button"
                         onClick={() => navigate('/login')}
-                        disabled={loading}
                     >
                         {loading ? 'در حال انتقال...' : 'حساب کاربری دارید؟'}
                     </button>

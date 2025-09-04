@@ -26,7 +26,7 @@ function Login() {
             try {
                 setLoading(true)
                 const data = await loginApi(username, password)
-                localStorage.setItem('token', data.access)
+                localStorage.setItem('token', data.data.access)
                 navigate('/products/')
 
             } catch (err) {

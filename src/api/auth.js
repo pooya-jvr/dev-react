@@ -1,53 +1,37 @@
-// src/api/auth.js
 const BASE_URL = import.meta.env.VITE_API_BASE_URL_LOCAL
+import api from "./api";
 
 export const loginApi = async (username, password) => {
-    const res = await fetch(`${BASE_URL}/users/api/login/`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
-    })
-
-    const data = await res.json();
-
-    if (!res.ok) {
-        switch (res.status) {
-            case 401:
-                throw new Error('رمز عبور اشتباه است');
-            case 400:
-                throw new Error('نام کاربری یا رمز عبور اشتباه است');
-            case 500:
-                throw new Error('خطای سرور، دوباره تلاش کنید');
-            case 405:
-                throw new Error('این نام کاربری ثبت نشده است');
-            default:
-                throw new Error('خطای ناشناخته');
+    try {
+        const res = await api.post("/users/login/", { username, password });
+        return res;
+    } catch (err) {
+        if (err.response) {
+            const messages = {
+                401: 'رمز عبور اشتباه است',
+                400: 'نام کاربری یا رمز عبور اشتباه است',
+                500: 'خطای سرور، دوباره تلاش کنید',
+                405: 'این نام کاربری ثبت نشده است',
+            };
+            throw new Error(messages[err.response.status] || 'خطای ناشناخته');
+        } else {
+            throw new Error('خطای شبکه یا ناشناخته');
         }
     }
-    return data
-}
-
+};
 
 
 export const registerApi = async (formData) => {
-    const csrfRes = await axios.get(`${BASE_URL}/users/get-csrf/`, {
-        withCredentials: true,
-    });
-
-    const csrfToken = csrfRes.data.csrfToken;
-
-    console.log(csrfToken)
-
-    const res = await axios.post(
-        `${BASE_URL}/users/register/`,
-        formData,
-        {
-            headers: {
-                "X-CSRFToken": csrfToken,
-            },
-            withCredentials: true,
+    try {
+        const res = await api.post("/users/register/", formData);
+        return res;
+    } catch (err) {
+        if (err.response) {
+            const data = err.response.data;
+            const messages = Object.values(data).flat().join("\n");
+            throw new Error(messages);
+        } else {
+            throw new Error("خطای ناشناخته رخ داد");
         }
-    );
-
-    return res.data;
+    }
 };
