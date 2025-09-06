@@ -30,7 +30,13 @@ const NavBar = () => {
     return (
         <nav className="navbar">
 
+            <div className="navbar-left">
+                <Link to="/" className="logo">فروشگاه من</Link>
+            </div>
             <div className="navbar-right" ref={menuRef}>
+                <div className="nav-buttons">
+                    <button onClick={() => navigate('/products')}>محصولات</button>
+                </div>
                 {token && user ? (
                     <div className="profile-menu" onClick={() => setOpen(!open)}>
                         <span>
@@ -56,12 +62,6 @@ const NavBar = () => {
                 ) : (
                     <Link to="/login" className="btn-login">ورود</Link>
                 )}
-                <div className="nav-buttons">
-                    <button onClick={() => navigate('/products/')}>محصولات</button>
-                </div>
-            </div>
-            <div className="navbar-left">
-                <Link to="/" className="logo">فروشگاه من</Link>
             </div>
         </nav>
     );

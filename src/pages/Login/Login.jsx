@@ -51,7 +51,7 @@ function Login() {
                             className={errors.username ? 'invalid' : ''}
                         />
                         {errors.username && (
-                            <span className="tooltip">{errors.username}</span>
+                            <div className="error-tooltip">{errors.username}</div>
                         )}
                     </div>
 
@@ -64,7 +64,7 @@ function Login() {
                             className={errors.password ? 'invalid' : ''}
                         />
                         {errors.password && (
-                            <span className="tooltip">{errors.password}</span>
+                            <div className="error-tooltip">{errors.password}</div>
                         )}
                     </div>
 

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import '../Login/Login.css'   // از همون استایل لاگین استفاده کن
+import '../Login/Login.css'
 import { registerApi } from '../../api/auth'
 import { useNavigate } from 'react-router-dom'
 
@@ -34,6 +34,7 @@ function Register() {
         if (!formData.lastName) newErrors.lastName = 'لطفاً نام خانوادگی را وارد کنید.'
         if (!formData.username) newErrors.username = 'لطفاً نام کاربری را وارد کنید.'
         if (!formData.password) newErrors.password = 'لطفاً رمز عبور را وارد کنید.'
+        if (!formData.confirmPassword) newErrors.confirmPassword = 'لطفاً رمز عبور تکراری را وارد کنید.'
         if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = 'رمز عبور مطابقت ندارد.'
 
         setErrors(newErrors)
@@ -46,8 +47,6 @@ function Register() {
                 setSuccess(true)
                 setTimeout(() => navigate('/login'), 2000);
             }
-        } catch (err) {
-            setErrors({ general: err.message });
         } finally {
             setLoading(false)
         }
@@ -73,7 +72,9 @@ function Register() {
                             onChange={handleChange}
                             className={errors.firstName ? 'invalid' : ''}
                         />
-                        {errors.firstName && <span className="tooltip">{errors.firstName}</span>}
+                        {errors.firstName &&
+                            (<div className="error-tooltip">{errors.firstName}</div>
+                            )}
                     </div>
 
                     <div className="input-wrapper">
@@ -85,7 +86,7 @@ function Register() {
                             onChange={handleChange}
                             className={errors.lastName ? 'invalid' : ''}
                         />
-                        {errors.lastName && <span className="tooltip">{errors.lastName}</span>}
+                        {errors.lastName && <div className="error-tooltip">{errors.lastName}</div>}
                     </div>
 
                     <div className="input-wrapper">
@@ -97,7 +98,7 @@ function Register() {
                             onChange={handleChange}
                             className={errors.username ? 'invalid' : ''}
                         />
-                        {errors.username && <span className="tooltip">{errors.username}</span>}
+                        {errors.username && <div className="error-tooltip">{errors.username}</div>}
                     </div>
 
                     <div className="input-wrapper">
@@ -109,7 +110,7 @@ function Register() {
                             onChange={handleChange}
                             className={errors.password ? 'invalid' : ''}
                         />
-                        {errors.password && <span className="tooltip">{errors.password}</span>}
+                        {errors.password && <div className="error-tooltip">{errors.password}</div>}
                     </div>
 
                     <div className="input-wrapper">
@@ -121,7 +122,7 @@ function Register() {
                             onChange={handleChange}
                             className={errors.confirmPassword ? 'invalid' : ''}
                         />
-                        {errors.confirmPassword && <span className="tooltip">{errors.confirmPassword}</span>}
+                        {errors.confirmPassword && <div className="error-tooltip">{errors.confirmPassword}</div>}
                     </div>
 
                     <div className="input-wrapper">
