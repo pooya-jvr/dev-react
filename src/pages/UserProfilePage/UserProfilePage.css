@@ -1,0 +1,74 @@
+/* UserProfilePage.css */
+.user-page {
+  padding: 60px 40px;
+  background: linear-gradient(135deg, #1b263b, #415a77);
+  color: white;
+  text-align: center;
+}
+
+.user-page h1 {
+  font-size: 3rem;
+  margin-bottom: 40px;
+  text-shadow: 0 3px 12px rgba(0,0,0,0.5);
+}
+
+.user-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 20px 80px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.45);
+}
+
+/* آواتار پیش‌فرض */
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #667eea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.user-card h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.user-card p {
+  font-size: 1rem;
+  opacity: 0.9;
+  margin-bottom: 8px;
+}
+
+.user-card button {
+  padding: 10px 25px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.user-card button:hover {
+  transform: translateY(-3px);
+  opacity: 0.95;
+}

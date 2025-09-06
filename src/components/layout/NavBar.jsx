@@ -3,12 +3,15 @@ import { Link } from "react-router-dom";
 import "./NavBar.css";
 import { UserProfileApi } from "../../api/profile";
 import { FaUserCircle, FaSignOutAlt } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom'
+
 
 const NavBar = () => {
     const [user, setUser] = useState(null);
     const [open, setOpen] = useState(false);
     const token = localStorage.getItem("token");
     const menuRef = useRef(null);
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (token) UserProfileApi().then((data) => setUser(data));
@@ -32,7 +35,7 @@ const NavBar = () => {
                     <div className="profile-menu" onClick={() => setOpen(!open)}>
                         <span>
                             <FaUserCircle size={22} />
-                            {user.username} ⬇
+                            {user.username}
                         </span>
                         {open && (
                             <div className="dropdown">
@@ -53,6 +56,9 @@ const NavBar = () => {
                 ) : (
                     <Link to="/login" className="btn-login">ورود</Link>
                 )}
+                <div className="nav-buttons">
+                    <button onClick={() => navigate('/products/')}>محصولات</button>
+                </div>
             </div>
             <div className="navbar-left">
                 <Link to="/" className="logo">فروشگاه من</Link>

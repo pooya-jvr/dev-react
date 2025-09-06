@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/Login/Login";
 import ProductsPage from "./pages/ProductsPage/ProductsPage";
 import Register from "./pages/Register/Register";
+import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
           path="/profile"
           element={
             <Layout>
-              <div>صفحه پروفایل</div>
+              <UserProfilePage />
             </Layout>
           }
         />
